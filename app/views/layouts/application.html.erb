@@ -1,7 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Zaq</title>
+    <%= content_for?(:title) ? yield(:title) : content_tag(:title, t('service_name')) %>
+    <%= content_for?(:meta_decription) ? yield(:meta_decription) : tag.meta(name: :description, content: t('tagline')) %>
+
+    <% if content_for?(:meta_ogp) %>
+      <%= yield(:meta_ogp) %>
+    <% else %>
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="<%= t('service_name') %>" />
+      <meta property="og:url" content="<%= request.url %>" />
+      <meta property="og:description" content="<%= t('tagline') %>" />
+      <meta property="og:site_name" content="<%= t('service_name') %>" />
+      <meta property="og:image" content="<%= image_path('ogp_1200_800') %>" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="800" />
+      <meta property="og:locale" content="ja_JP" />
+      <meta name="twitter:text:title" content="<%= t('service_name') %>" />
+      <meta name="twitter:image" content="<%= image_path('ogp_1200_800') %>" />
+      <meta name="twitter:card" content="summary_large_image" />
+    <% end  %>
+
+    <% if content_for?(:canonical_url) %>
+      <%= yield(:canonical_url) %>
+    <% else %>
+      <link rel="canonical" href="<%= request.url.split('?').first %>" />
+    <% end  %>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
