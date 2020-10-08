@@ -1,4 +1,11 @@
-<h1>Editing Question</h1>
+<h1><%= t('.page_title', question_title: @question.title) %></h1>
+
+<ul>
+  <li><%= link_to t('service_name'), root_path %></li>
+  <li><%= link_to t('questions.index.page_title'), questions_path %></li>
+  <li><%= link_to @question.title, @question %></li>
+  <li><%= link_to t('edit'), [:edit, @question] %></li>
+</ul>
 
 <%= render 'form', question: @question %>
 

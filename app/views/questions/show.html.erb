@@ -1,9 +1,22 @@
+<% content_for :title do %>
+  <%= content_tag(:title, "#{t('.page_title', question_title: @question.title)}｜#{t('service_name')}") %>
+<% end %>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @question.title %>
-</p>
+<% content_for :h1 do %>
+  <h1><%= @question.title %></h1>
+<% end %>
+
+<% content_for :breadcrumb do %>
+  <ul class='breadcrumb'>
+    <li class='breadcrumb__item'><%= link_to t('service_name'), root_path %></li>
+    <li class='breadcrumb__item'><%= link_to t('questions.index.page_title'), questions_path %></li>
+    <li class='breadcrumb__item'><%= link_to @question.title, @question %></li>
+  </ul>
+<% end %>
+
+<%= @question.content %>
 
 <%= link_to 'Edit', edit_question_path(@question) %> |
 <%= link_to 'Back', questions_path %>

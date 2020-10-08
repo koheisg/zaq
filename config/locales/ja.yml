@@ -1,3 +1,13 @@
 ja:
   service_name: 在宅QA
-  tagline: 在宅勤務(テレワークで)で働こう
+  tagline: 在宅勤務(テレワーク)で働こう
+  edit: 編集
+  destroy: 削除
+  questions:
+    index:
+      page_title: 在宅勤務(テレワーク)の質問
+      new_question: 質問する
+    show:
+      page_title: "質問: %{question_title}"
+    edit:
+      page_title: "質問: %{question_title} の編集"
