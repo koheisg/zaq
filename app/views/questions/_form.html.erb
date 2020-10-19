@@ -1,27 +1,21 @@
-<%= form_with(model: question, local: true) do |form| %>
-  <% if question.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
-
-      <ul>
-        <% question.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+<%= form_with(model: question, local: true, class: 'pt-6 pb-8') do |form| %>
+  <div class="mb-4">
+    <%= form.label :title, class: 'block text-gray-700 text-sm font-bold mb-2' %>
+    <%= form.text_field :title, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+    <%- question.errors.messages[:title].each do |message| %>
+      <p class="mt-3 text-red-500 text-xs italic"><%= message %></p>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :content %>
+  <div class="mb-6">
+    <%= form.label :content, class: 'block text-gray-700 text-sm font-bold mb-2' %>
     <%= form.rich_text_area :content %>
+    <%- question.errors.messages[:content].each do |message| %>
+      <p class="mt-3 text-red-500 text-xs italic"><%= message %></p>
+    <% end %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="flex items-center justify-between">
+    <%= form.submit class: 'flex ml-auto my-1 py-1 px-5 rounded-lg bg-gray-400', data: {disable_with: t('.creating')} %>
   </div>
 <% end %>

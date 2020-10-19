@@ -1,0 +1,29 @@
+<% content_for :title do %>
+  <%= content_tag(:title, "#{t('.page_title', question_title: @question.title)}｜#{t('service_name')}") %>
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+<% content_for :h1 do %>
+  <%= t('.page_title', question_title: @question.title) %>
+<% end %>
+
+<% content_for :breadcrumb do %>
+  <ul class='flex my-2'>
+    <li class='mr-3 px-1 border bg-white'><%= link_to t('service_name'), root_path %></li>
+    <li class='mr-3 px-1 border bg-white'><%= link_to t('questions.index.page_title'), questions_path %></li>
+    <li class='mr-3 px-1 border bg-white'><%= link_to @question.title, @question %></li>
+    <li class='mr-3 px-1 border bg-white'><%= t('.add_answer') %></li>
+  </ul>
+<% end %>
+
+
+<%= render 'questions/question', question: @question %>
+
+<div id='reply-form' class='border rounded-lg bg-white mb-5 px-2 py-1' data-target='answer.form'>
+  <%= render 'form', question: @question, answer: @answer %>
+</div>
+
+<div id='answers'>
+  <%= render partial: 'questions/answers/answer', collection: @answers, locals: {question: @question} %>
+</div>

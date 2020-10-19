@@ -11,13 +11,9 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.rich_text_area :content %>
-  </div>
-
+  <%= form.rich_text_area :content %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'flex ml-auto my-1 py-1 px-5 rounded-lg bg-gray-400', data: {disable_with: t('.creating')} %>
   </div>
 <% end %>

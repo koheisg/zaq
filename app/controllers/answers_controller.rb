@@ -28,9 +28,11 @@ class AnswersController < ApplicationController
 
     respond_to do |format|
       if @answer.save
+        format.js { render :create, status: :created }
         format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
         format.json { render :show, status: :created, location: @answer }
       else
+        format.js { render :error, status: :unprocessable_entity }
         format.html { render :new }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
       end
@@ -69,6 +71,6 @@ class AnswersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def answer_params
-      params.require(:answer).permit(:question_id)
+      params.require(:answer).permit(:content)
     end
 end

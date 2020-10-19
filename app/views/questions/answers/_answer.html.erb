@@ -1,0 +1,32 @@
+<div class='mb-5' data-controller='answer'>
+  <div class='bg-white px-2 py-1'>
+    <div class='flex items-center w-full h-8'>
+      <div class='px-1'>
+        <%= image_tag answer.user_icon, alt: t('icon', user_name: answer.user_name), class: 'rounded-full h-8' %>
+      </div>
+      <div class='px-1'>
+        <%= answer.user_name %>
+      </div>
+      <%= link_to [question, answer] do %>
+        <div class='text-gray-700 px-1'>
+          <%= l answer.created_at %>
+        </div>
+      <% end %>
+      <div class='ml-auto w-8'>
+        <%= image_tag 'zondicons/dots-horizontal-triple.svg', class: 'h-8 w-4', data: {action: 'click->modal#open', 'modal-content': "answer-#{answer.id}"} %>
+      </div>
+    </div>
+  <div>
+    <div class='border rounded-lg bg-white px-2 py-1'>
+      <%= answer.content %>
+    </div>
+  </div>
+</div>
+
+<template data-modal-target='answer-<%= answer.id %>'>
+  <ul>
+    <li class='p-1'><%= link_to t('.edit'), edit_question_answer_path(answer.id, question_id: answer.question_id) %></li>
+    <li class='p-1 text-red-500'><%= link_to t('.delete'), question_answer_path(answer.id, question_id: answer.question_id), method: :delete %></li>
+    <li class='p-1'><button data-action='click->modal#open'><%= t('.cancel') %></button></li>
+  </ul>
+</template>

@@ -1,0 +1,38 @@
+<% content_for :title do %>
+  <%= content_tag(:title, "#{t('.page_title', question_title: @question.title)}｜#{t('service_name')}") %>
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+<% content_for :h1 do %>
+  <%= t('.page_title', question_title: @question.title) %>
+<% end %>
+
+<% content_for :breadcrumb do %>
+  <ul class='flex my-2'>
+    <li class='mr-3 px-1 border bg-white'><%= link_to t('service_name'), root_path %></li>
+    <li class='mr-3 px-1 border bg-white'><%= link_to t('questions.index.page_title'), questions_path %></li>
+    <li class='mr-3 px-1 border bg-white'><%= link_to @question.title, @question %></li>
+    <li class='mr-3 px-1 border bg-white'><%= link_to @answer.content, [@question, @answer] %></li>
+    <li class='mr-3 px-1 border bg-white'><%= t('.edit_answer') %></li>
+  </ul>
+<% end %>
+
+
+<div class='mb-5'>
+  <div class='border rounded-lg bg-white px-2 py-1'>
+    <div class='font-bold mb-1'><%= @question.title %></div>
+    <div>
+      <%= @question.content %>
+    </div>
+  </div>
+</div>
+
+<div id='answers'>
+  <div class='border rounded-lg bg-white px-2 py-1'>
+    <div class=mb-5>
+      <%= @answer.content %>
+    </div>
+    <%= render 'form', question: @question, answer: @answer %>
+  </div>
+</div>

@@ -3,34 +3,24 @@
 <% end %>
 
 <% content_for :h1 do %>
-  <h1><%= t('.page_title') %></h1>
+  <%= t('.page_title') %>
 <% end %>
 
 <% content_for :breadcrumb do %>
-  <ul class='breadcrumb'>
-    <li class='breadcrumb__item'><%= link_to t('service_name'), root_path %></li>
-    <li class='breadcrumb__item'><%= link_to t('.page_title'), questions_path %></li>
+  <ul class='flex my-2'>
+    <li class='mr-3 px-1 border bg-white'><%= link_to t('service_name'), root_path %></li>
+    <li class='mr-3 px-1 border bg-white'><%= link_to t('.page_title'), questions_path %></li>
   </ul>
 <% end %>
 
 <p id="notice"><%= notice %></p>
 
-<% @questions.each do |question| %>
-  <div>
-    <%= link_to question do %>
-      <h2><%= question.title %></h2>
-      <div>
-        <%= question.content %>
-      </div>
-    <% end %>
-    <div>
-      <%= link_to t('edit'), edit_question_path(question) %>
-      |
-      <%= link_to t('destroy'), question, method: :delete, data: { confirm: 'Are you sure?' } %>
-    </div>
+<div id='questions'>
+  <%= render partial: 'questions/question', collection: @questions %>
+</div>
+
+<div class='mb-5'>
+  <div class='mx-1 text-center'>
+    <%= link_to t('.new_question'), new_question_path %>
   </div>
-<% end %>
-
-<br>
-
-<%= link_to t('.new_question'), new_question_path %>
+</div>
