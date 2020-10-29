@@ -4,13 +4,14 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    @questions = Question.includes(:user).all.with_rich_text_content
   end
 
   # GET /questions/1
   # GET /questions/1.json
   def show
-    @questions = Question.all
+    @questions = Question.includes(:user).all.with_rich_text_content
+    @answers = @question.answers.includes(:user).with_rich_text_content
     @answer = Answer.new(question: @question)
   end
 
@@ -66,7 +67,7 @@ class QuestionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_question
-      @question = Question.find(params[:id])
+      @question = Question.with_rich_text_content.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

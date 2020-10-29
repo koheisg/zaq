@@ -13,4 +13,19 @@ class User < ApplicationRecord
 
   def time_zone
   end
+
+  def to_key
+    ["@#{name}"]
+  end
+
+  def to_param
+    "@#{name}"
+  end
+
+  def profile
+    prof = OpenStruct.new
+    prof.name = name
+    prof.url = "https://medium.com/@#{name}"
+    prof
+  end
 end

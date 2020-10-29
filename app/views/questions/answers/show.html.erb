@@ -1,5 +1,5 @@
 <% content_for :title do %>
-  <%= content_tag(:title, "#{t('.page_title', question_title: @question.title)}｜#{t('service_name')}") %>
+  <%= content_tag(:title, "#{@answer.content.to_plain_text}｜#{t('service_name')}") %>
 <% end %>
 
 <% content_for :back do %>
@@ -9,7 +9,7 @@
 <% end %>
 
 <% content_for :h1 do %>
-  <%= @question.title %>
+  <%= @answer.content.to_plain_text %>
 <% end %>
 
 <% content_for :breadcrumb do %>
@@ -23,28 +23,12 @@
       <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
     </svg>
     <%= link_to @question.title, @question, class: 'text-gray-500 hover:text-gray-700 transition duration-150 ease-in-out' %>
+    <svg class="flex-shrink-0 mx-2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+    </svg>
+    <%= link_to @answer.content.to_plain_text, [@question, @answer], class: 'text-gray-500 hover:text-gray-700 transition duration-150 ease-in-out' %>
   </nav>
 <% end %>
 
-<%= render @question %>
-
-<div data-controller='answer' class='bg-white border'>
-  <div class='flex'>
-    <div class='mx-auto px-1'>
-      <%= image_tag 'zondicons/reply.svg', class: 'h-8 w-4', data: {action: 'click->answer#reply'} %>
-    </div>
-    <div class='mx-auto px-1'><%= image_tag 'zondicons/heart.svg', class: 'h-8 w-4' %></div>
-    <div class='mx-auto px-1'><%= image_tag 'zondicons/share.svg', class: 'h-8 w-4', data: {action: 'click->answer#share'} %></div>
-  </div>
-  <div id='reply-form' class='border rounded-lg bg-white px-2 py-1 hidden' data-target='answer.form'>
-    <%= render 'questions/answers/form', question: @question, answer: @answer %>
-  </div>
-</div>
-
-<div id='answers' class='mb-5'>
-  <%= render partial: 'questions/answers/answer', collection: @answers, locals: {question: @question} %>
-</div>
-
-<div id='questions'>
-  <%= render partial: 'questions/question', collection: @questions %>
-</div>
+<%= render @answer %>
+<%= render 'questions/question', question: @question %>

@@ -1,6 +1,9 @@
 class Questions::AnswersController < ApplicationController
   before_action :set_question
-  before_action :set_answer, only: [:edit, :destroy]
+  before_action :set_answer, only: [:edit, :destroy, :show]
+
+  def show
+  end
 
   def new
     @answers = @question.answers
@@ -12,6 +15,7 @@ class Questions::AnswersController < ApplicationController
 
   def create
     @answer = @question.answers.new(answer_params)
+    @answer.user_id = Current.user.id
 
     respond_to do |format|
       if @answer.save
@@ -29,7 +33,7 @@ class Questions::AnswersController < ApplicationController
   def destroy
     @answer.destroy
     respond_to do |format|
-      format.html { redirect_to question_url(@question.id), notice: 'Answer was successfully destroyed.' }
+      format.html { redirect_to question_url(@question.id), notice: t('.destroyed') }
       format.json { head :no_content }
     end
   end

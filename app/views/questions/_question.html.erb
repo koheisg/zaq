@@ -2,10 +2,14 @@
   <div class='bg-white px-2 py-1'>
     <div class='flex items-center w-full h-8'>
       <div class='px-1'>
-        <%= image_tag question.user_icon, alt: t('icon', user_name: question.user_name), class: 'rounded-full h-8' %>
+        <%= link_to question.user do %>
+          <%= image_tag question.user_icon, alt: t('icon', user_name: question.user_name), class: 'rounded-full h-8' %>
+        <% end %>
       </div>
       <div class='px-1'>
-        <%= question.user_name %>
+        <%= link_to question.user do %>
+          <%= question.user_name %>
+        <% end %>
       </div>
       <%= link_to question do %>
         <div class='text-gray-700 px-1'>
