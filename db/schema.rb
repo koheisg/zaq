@@ -70,9 +70,11 @@ ActiveRecord::Schema.define(version: 2020_11_01_043105) do
   create_table "user_authentications", force: :cascade do |t|
     t.string "authenticationable_type", null: false
     t.integer "authenticationable_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["authenticationable_type", "authenticationable_id"], name: "authenticationable"
+    t.index ["user_id"], name: "index_user_authentications_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
