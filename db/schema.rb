@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_01_034944) do
+ActiveRecord::Schema.define(version: 2020_11_01_043105) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -64,6 +64,14 @@ ActiveRecord::Schema.define(version: 2020_11_01_034944) do
     t.string "uuid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_authentications", force: :cascade do |t|
+    t.string "authenticationable_type", null: false
+    t.integer "authenticationable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["authenticationable_type", "authenticationable_id"], name: "authenticationable"
   end
 
   create_table "users", force: :cascade do |t|
