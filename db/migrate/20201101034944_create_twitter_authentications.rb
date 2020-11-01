@@ -4,6 +4,8 @@ class CreateTwitterAuthentications < ActiveRecord::Migration[6.0]
       t.string :uid
 
       t.timestamps
+
+      t.index :uid, unique: true
     end
   end
 end

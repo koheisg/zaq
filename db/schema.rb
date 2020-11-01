@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2020_11_01_043105) do
     t.string "uid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["uid"], name: "index_twitter_authentications_on_uid", unique: true
   end
 
   create_table "user_authentications", force: :cascade do |t|
