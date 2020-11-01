@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2020_11_01_043105) do
   end
 
   create_table "twitter_authentications", force: :cascade do |t|
-    t.string "uuid"
+    t.string "uid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
