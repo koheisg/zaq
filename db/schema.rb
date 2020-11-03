@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_01_043105) do
+ActiveRecord::Schema.define(version: 2020_11_03_164338) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +52,16 @@ ActiveRecord::Schema.define(version: 2020_11_01_043105) do
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "likeable_type", null: false
+    t.integer "likeable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable_type_and_likeable_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
@@ -87,5 +97,6 @@ ActiveRecord::Schema.define(version: 2020_11_01_043105) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
+  add_foreign_key "likes", "users"
   add_foreign_key "questions", "users"
 end
