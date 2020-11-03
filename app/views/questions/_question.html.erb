@@ -1,32 +1,30 @@
-<div data-controller='question'>
-  <div class='bg-white px-2 py-1'>
-    <div class='flex items-center w-full h-8'>
-      <div class='px-1'>
-        <%= link_to question.user do %>
-          <%= image_tag question.user_icon, alt: t('icon', user_name: question.user_name), class: 'rounded-full h-8' %>
-        <% end %>
-      </div>
-      <div class='px-1'>
-        <%= link_to question.user do %>
-          <%= question.user_name %>
-        <% end %>
-      </div>
-      <%= link_to question do %>
-        <div class='text-gray-700 px-1'>
-          <%= l question.created_at %>
-        </div>
+<div class='bg-white px-2 py-1' data-controller='question'>
+  <div class='flex items-center w-full h-8'>
+    <div class='px-1'>
+      <%= link_to question.user do %>
+        <%= image_tag question.user_icon, alt: t('icon', user_name: question.user_name), class: 'rounded-full h-8' %>
       <% end %>
-      <div class='ml-auto w-8'>
-        <%= image_tag 'zondicons/dots-horizontal-triple.svg', class: 'h-8 w-4', data: {action: 'click->modal#open', 'modal-content': "question-#{question.id}"} %>
-      </div>
+    </div>
+    <div class='px-1'>
+      <%= link_to question.user do %>
+        <%= question.user_name %>
+      <% end %>
     </div>
     <%= link_to question do %>
-      <div class='font-bold mb-1 text-xl'><%= question.title %></div>
-      <div class='text-xl mb-1'>
-        <%= question.content %>
+      <div class='text-gray-700 px-1'>
+        <%= l question.created_at %>
       </div>
     <% end %>
+    <div class='ml-auto w-8'>
+      <%= image_tag 'zondicons/dots-horizontal-triple.svg', class: 'h-8 w-4', data: {action: 'click->modal#open', 'modal-content': "question-#{question.id}"} %>
+    </div>
   </div>
+  <%= link_to question do %>
+    <div class='font-bold mb-1 text-xl'><%= question.title %></div>
+    <div class='text-xl mb-1'>
+      <%= question.content %>
+    </div>
+  <% end %>
 </div>
 
 <template data-modal-target='question-<%= question.id %>'>
