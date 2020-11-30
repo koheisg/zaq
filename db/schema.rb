@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_03_164338) do
+ActiveRecord::Schema.define(version: 2020_11_30_092134) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -70,6 +70,22 @@ ActiveRecord::Schema.define(version: 2020_11_03_164338) do
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
+  create_table "tagings", force: :cascade do |t|
+    t.integer "tag_id", null: false
+    t.string "tagable_type", null: false
+    t.integer "tagable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tag_id"], name: "index_tagings_on_tag_id"
+    t.index ["tagable_type", "tagable_id"], name: "index_tagings_on_tagable_type_and_tagable_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "twitter_authentications", force: :cascade do |t|
     t.string "uid"
     t.datetime "created_at", precision: 6, null: false
@@ -99,4 +115,5 @@ ActiveRecord::Schema.define(version: 2020_11_03_164338) do
   add_foreign_key "answers", "users"
   add_foreign_key "likes", "users"
   add_foreign_key "questions", "users"
+  add_foreign_key "tagings", "tags"
 end
