@@ -22,10 +22,16 @@
     <svg class="flex-shrink-0 mx-2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
       <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
     </svg>
-    <%= link_to t('.page_title'), new_question_path, class: "text-gray-500 hover:text-gray-700 transition duration-150 ease-in-out" %>
+    <%= link_to t('.page_title_short'), new_question_path, class: "text-gray-500 hover:text-gray-700 transition duration-150 ease-in-out" %>
   </nav>
 <% end %>
 
 <div class='border rounded-lg bg-white mb-5 px-2 py-1'>
+  <p class='pt-3 font-bold'>テレワークについて質問してみよう！</p>
+  <div class='text-sm text-gray-700 bg-yellow-100 py-3 px-1 rounded'>
+    <p>テレワーク/在宅勤務について困っていることはなんですか？</p>
+    <p>在宅勤務の制度設計のコツがあるならば知りたいことはなんでしょうか？</p>
+    <p>在宅勤務・テレワークについて長年経験がある方や経営者の方に質問をしてみましょう。</p>
+  </div>
   <%= render 'form', question: @question %>
 </div>

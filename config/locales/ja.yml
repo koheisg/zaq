@@ -8,9 +8,10 @@ ja:
       page_title: 在宅勤務(テレワーク)の質問
       new_question: 質問する
     new:
-      page_title: 質問する
+      page_title: テレワークについて質問をする
+      page_title_short: 質問をする
     form:
-      creating: 質問を追加中...
+      creating: 質問を投稿中...
     show:
       page_title: "質問: %{question_title}"
       edit_question: 質問を編集する
@@ -37,7 +38,7 @@ ja:
   helpers:
     submit:
       question:
-        create: 質問を追加する
+        create: 質問を投稿する
       answer:
         create: 返信
   time:
@@ -79,7 +80,7 @@ ja:
   activerecord:
     attributes:
       question:
-        title: タイトル
-        content: 本文
+        title: 質問のタイトル
+        content: 質問の本文
       answer:
         content: 回答
