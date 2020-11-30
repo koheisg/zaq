@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :questions do
     resources :answers, module: :questions
+    resources :likes, module: :questions
   end
   resources :users, path: '/', only: :show do
     resources :questions, only: :index, module: :users
