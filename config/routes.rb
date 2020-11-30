@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tagings
   resources :tags
   resources :questions do
     resources :answers, module: :questions
