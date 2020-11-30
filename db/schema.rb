@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_30_092134) do
+ActiveRecord::Schema.define(version: 2020_11_30_101616) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_092134) do
     t.integer "question_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_092134) do
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_092134) do
 
   create_table "tags", force: :cascade do |t|
     t.string "name"
+    t.string "decription"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
