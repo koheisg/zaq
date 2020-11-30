@@ -52,7 +52,7 @@
           <% if Current.user %>
             <%= image_tag Current.user.icon, class: 'h-12 w-12 rounded-full block', data: {action: 'click->me#open'} %>
           <% else %>
-            <%= link_to 'signin with twitter', '/auth/twitter' %>
+            <%= link_to t('signin_with_twitter'), '/auth/twitter' %>
           <% end %>
           <% if Current.user %>
             <div class="hidden absolute right-0" data-target='me.container'>

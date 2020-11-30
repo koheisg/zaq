@@ -2,6 +2,7 @@ ja:
   service_name: 在宅QA
   tagline: 在宅勤務(テレワーク)で働こう
   icon: "%{user_name}のアイコン"
+  signin_with_twitter: Twitterでログイン
   questions:
     index:
       page_title: 在宅勤務(テレワーク)の質問
