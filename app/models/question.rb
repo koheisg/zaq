@@ -6,4 +6,6 @@ class Question < ApplicationRecord
   validates :title, :content, presence: true
 
   delegate :name, :icon, to: :user, prefix: true
+
+  default_scope { order(created_at: :desc) }
 end

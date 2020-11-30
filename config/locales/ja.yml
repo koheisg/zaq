@@ -16,7 +16,8 @@ ja:
       page_title: "質問: %{question_title}"
       edit_question: 質問を編集する
     edit:
-      page_title: "質問: %{question_title} の編集"
+      page_title: "質問: 『%{question_title}』を編集する"
+      page_title_short: 編集
     question:
       edit: 編集する
       delete: 削除する
@@ -39,6 +40,7 @@ ja:
     submit:
       question:
         create: 質問を投稿する
+        update: 質問を編集する
       answer:
         create: 返信
   time:
