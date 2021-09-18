@@ -42,10 +42,10 @@
 
   <body class='bg-gray-100' data-controller='modal me'>
     <div class='bg-gray-200'>
-      <h1 class='container mx-auto text-xs'><%= yield(:h1) %></h1>
+      <h1 class='max-w-xl mx-auto text-xs'><%= yield(:h1) %></h1>
     </div>
     <div class='w-100 border-b border-gray-200'>
-      <div class='container mx-auto px-4 flex h-16 items-center'>
+      <div class='max-w-xl mx-auto px-4 flex h-16 items-center'>
         <%= yield(:back) %>
         <%= link_to t('service_name'), root_path %>
         <div class='ml-auto mr-0 relative'>
@@ -79,12 +79,12 @@
       </div>
     </div>
     <%- if content_for?(:breadcrumb) %>
-      <div class='container mx-auto px-4'>
+      <div class='max-w-xl mx-auto px-4'>
         <%= yield(:breadcrumb) %>
       </div>
     <% end %>
     <% if notice %>
-      <div class='container mx-auto py-4'>
+      <div class='max-w-xl mx-auto py-4'>
         <div class="rounded-md bg-green-100 p-4">
           <div class="flex">
             <div class="flex-shrink-0">
@@ -117,7 +117,7 @@
         </div>
       </div>
     <% end %>
-    <div class='container mx-auto'>
+    <div class='max-w-xl mx-auto'>
       <%= yield %>
     </div>
     <%= render 'shared/modal' %>

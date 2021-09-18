@@ -82,7 +82,6 @@ ja:
   activerecord:
     attributes:
       question:
-        title: 質問のタイトル
-        content: 質問の本文
+        content: 質問
       answer:
         content: 回答

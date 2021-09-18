@@ -1,4 +1,9 @@
 class SessionsController < ApplicationController
+  skip_before_action :require_authenticate
+
+  def new
+  end
+
   def create
     uid = request.env['omniauth.auth']['uid']
     info = request.env['omniauth.auth']['info']

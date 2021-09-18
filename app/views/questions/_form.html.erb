@@ -1,32 +1,16 @@
 <%= form_with(model: question, local: true, class: 'pt-6') do |form| %>
-  <div class="mb-4">
-    <%= form.label :title, class: 'block text-gray-700 text-sm font-bold mb-2' %>
-    <div class='pb-2 flex'>
-      <svg class='flex-shrink-0 mx-2 h-5 w-5 text-gray-500' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-      <div>
-        <p class='text-gray-500 text-sm'>回答してくれる人に何に困っているかが伝わるような文章を書くのが、良い回答が付きやすいポイントです。</p>
-        <p class='text-gray-500 text-sm'>悪い例) リモートワークの会議の仕方にについて</p>
-        <p class='text-gray-500 text-sm'>良い例) リモート会議中の発言を促す方法について</p>
-      </div>
-    </div>
-    <%= form.text_field :title, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
-    <%- question.errors.messages[:title].each do |message| %>
-      <p class="mt-3 text-red-500 text-xs italic"><%= message %></p>
-    <% end %>
-  </div>
-
-  <%= form.label :content, class: 'block text-gray-700 text-sm font-bold mb-2' %>
+  <%= form.label :content, class: 'block text-gray-700 text-sm font-semibold mb-2' %>
   <div class='pb-2 flex'>
     <svg class='flex-shrink-0 mx-2 h-5 w-5 text-gray-500' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
     </svg>
     <div>
-      <p class='text-gray-500 text-sm'>質問についてできるだけ具体的に書いてみましょう。良い回答を得られるポイントです。</p>
+      <p class='text-gray-500 text-sm'>回答してくれる人に何に困っているかを書くのが、良い回答が付きやすいポイントです。</p>
+      <p class='text-gray-500 text-sm'>悪い例) リモートワークの会議の仕方を教えてください</p>
+      <p class='text-gray-500 text-sm'>良い例) リモート会議中の発言を促すいいアイデアはありますか？</p>
     </div>
   </div>
-  <%= form.rich_text_area :content, class: 'min-h-96 leading-none shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+  <%= form.rich_text_area :content, class: 'min-h-96 leading-none shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', placeholder: '質問を入力してください' %>
   <%- question.errors.messages[:content].each do |message| %>
     <p class="mt-3 text-red-500 text-xs italic"><%= message %></p>
   <% end %>

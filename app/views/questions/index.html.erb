@@ -7,23 +7,54 @@
 <% end %>
 
 <% content_for :breadcrumb do %>
+  <%= breadcrumbs([{name: t('service_name'), path: root_path}, {name: t('.page_title'), path: questions_path}]) %>
   <nav class="flex items-center text-sm leading-5 font-medium">
-    <%= link_to t('service_name'), root_path, class: "text-gray-500 hover:text-gray-700 transition duration-150 ease-in-out" %>
-    <svg class="flex-shrink-0 mx-2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+    <%= link_to t('service_name'), root_path, class: "text-gray-500 hover:text-gray-700" %>
+    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
       <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
     </svg>
-    <%= link_to t('.page_title'), questions_path, class: "text-gray-500 hover:text-gray-700 transition duration-150 ease-in-out" %>
+    <%= link_to t('.page_title'), questions_path, class: "text-gray-500 hover:text-gray-700" %>
   </nav>
 <% end %>
 
-<p id="notice"><%= notice %></p>
+<!--
+  <div class='grid grid-cols-3 gap-4'>
+    <% @tags.each do |tag| %>
+      <div>
+        <span><%= tag.name %></span>
+        <p><%= tag.description %></p>
+      </div>
+    <% end %>
+  </div>
+-->
+
 
 <div id='questions'>
   <%= render partial: 'questions/question', collection: @questions %>
 </div>
-
-<div class='m-5 bg-gray-200 fixed bottom-0 right-0 rounded-full py-2 px-4'>
-  <div class='mx-1 text-center'>
-    <%= link_to t('.new_question'), new_question_path %>
+<% if @questions.blank? %>
+  <div class="flex flex-col items-stretch flex-shrink-0 m-0 py-10 text-black z-0">
+    <div class="inline font-sans font-semibold text-lg mx-0 mt-0 mb-2 p-0 text-center text-gray-900">
+      <p class="inline font-semibold m-0 text-center text-black">まだ質問がありません</p>
+    </div>
+    <div class="inline font-sans text-lg mx-0 mt-0 mb-2 p-0 text-center text-gray-900">
+      <p class="inline font-sans font-normal text-sm p-0 text-center text-gray-600">
+      聞きたいことが見つかりませんでしたか？<br />
+      ぜひ最初に質問をして、同じことを他の人が気になっているかもしれません。<br />
+      質問に答えられる人がいるかもしれません。最初の質問をしてみましょう。
+      </p>
+    </div>
+    <div class='m-5 bg-gray-200 rounded-full py-2 px-4 w-full md:w-1/2 mx-auto'>
+      <%= link_to new_question_path do %>
+        <div class='mx-1 text-center'>
+          <%= t('.new_question') %>
+        </div>
+      <% end %>
+    </div>
+<% else %>
+  <div class='m-5 bg-gray-200 fixed bottom-0 right-0 rounded-full py-2 px-4'>
+    <div class='mx-1 text-center'>
+      <%= link_to t('.new_question'), new_question_path %>
+    </div>
   </div>
-</div>
+<% end %>

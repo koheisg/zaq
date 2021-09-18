@@ -1,16 +1,18 @@
 class QuestionsController < ApplicationController
+  skip_before_action :require_authenticate, only: [:index, :show]
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   # GET /questions
   # GET /questions.json
   def index
+    @tags = Tag.all
     @questions = Question.includes(:user).all.with_rich_text_content
   end
 
   # GET /questions/1
   # GET /questions/1.json
   def show
-    @questions = Question.includes(:user).all.with_rich_text_content
+    @questions = Question.where.not(id: @question.id).includes(:user).with_rich_text_content
     @answers = @question.answers.includes(:user).with_rich_text_content
     @answer = Answer.new(question: @question)
   end

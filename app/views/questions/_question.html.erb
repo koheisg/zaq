@@ -1,31 +1,59 @@
-<div class='bg-white px-2 py-1 mt-3 border' data-controller='question'>
-  <div class='flex items-center w-full h-8'>
-    <div class='px-1'>
+<div class='bg-white border rounded-lg <%= local_assigns[:question_counter].blank? ? 'mb-6' : 'mb-2' %>' data-controller='question'>
+  <div class='flex items-center w-full pt-2'>
+    <div class='px-2'>
       <%= link_to question.user do %>
-        <%= image_tag question.user_icon, alt: t('icon', user_name: question.user_name), class: 'rounded-full h-8' %>
+        <%= image_tag question.user_icon, alt: t('icon', user_name: question.user_name), class: 'rounded-full h-6' %>
       <% end %>
     </div>
-    <div class='px-1'>
+    <div class='px-1 text-sm'>
       <%= link_to question.user do %>
         <%= question.user_name %>
       <% end %>
     </div>
     <%= link_to question do %>
-      <div class='text-gray-700 px-1'>
+      <div class='px-1 text-sm text-gray-700'>
         <%= l question.created_at %>
       </div>
     <% end %>
-    <div class='ml-auto w-8'>
+    <div class='w-8 ml-auto'>
       <%= image_tag 'zondicons/dots-horizontal-triple.svg', class: 'h-8 w-4', data: {action: 'click->modal#open', 'modal-content': "question-#{question.id}"} %>
     </div>
   </div>
-  <%= link_to question do %>
-    <div class='font-bold mb-1 text-xl'><%= question.title %></div>
-    <div class='text-xl mb-1'>
-      <%= question.content %>
+  <div class='p-2'>
+    <% if local_assigns[:question_counter].blank? %>
+      <%= link_to question do %>
+        <%= question.content %>
+      <% end %>
+    <% else %>
+      <%= link_to question do %>
+        <div class='mb-1 font-semibold'><%= title(question) %></div>
+        <div class="py-2">
+          <%= content_without_first_sentence(question) %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <% if local_assigns[:question_counter].blank? %>
+    <div data-controller='answer' class='border-y'>
+      <div class='flex'>
+        <div class='px-1 mx-auto'>
+          <%= image_tag 'zondicons/reply.svg', class: 'h-8 w-4', data: {action: 'click->answer#reply'} %>
+        </div>
+        <div class='px-1 mx-auto'><%= image_tag 'zondicons/heart.svg', class: 'h-8 w-4' %></div>
+        <div class='px-1 mx-auto'><%= image_tag 'zondicons/share.svg', class: 'h-8 w-4', data: {action: 'click->answer#share'} %></div>
+      </div>
+      <div id='reply-form' class='hidden px-2 py-1 bg-white border rounded-lg' data-target='answer.form'>
+        <%= render 'questions/answers/form', question: @question, answer: @answer %>
+      </div>
+      <% if @answers %>
+        <div id='answers'>
+          <%= render partial: 'questions/answers/answer', collection: @answers, locals: {question: question} %>
+        </div>
+      <% end %>
     </div>
   <% end %>
 </div>
+
 
 <template data-modal-target='question-<%= question.id %>'>
   <ul>
