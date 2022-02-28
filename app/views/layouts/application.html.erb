@@ -31,43 +31,38 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <% if params[:css_debug] %>
-      <style>
-        *{outline: solid 1px pink !important;}
-      </style>
-    <% end  %>
+    <%= stylesheet_link_tag "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
   </head>
 
   <body class='bg-gray-100' data-controller='modal me'>
     <div class='bg-gray-200'>
       <h1 class='max-w-xl mx-auto text-xs'><%= yield(:h1) %></h1>
     </div>
-    <div class='w-100 border-b border-gray-200'>
-      <div class='max-w-xl mx-auto px-4 flex h-16 items-center'>
+    <div class='border-b border-gray-200 w-100'>
+      <div class='flex items-center h-16 max-w-xl px-4 mx-auto'>
         <%= yield(:back) %>
         <%= link_to t('service_name'), root_path %>
-        <div class='ml-auto mr-0 relative'>
+        <div class='relative ml-auto mr-0'>
           <% if Current.user %>
             <%= image_tag Current.user.icon, class: 'h-12 w-12 rounded-full block', data: {action: 'click->me#open'} %>
           <% else %>
             <%= link_to t('signin_with_twitter'), '/auth/twitter' %>
           <% end %>
           <% if Current.user %>
-            <div class="hidden absolute right-0" data-target='me.container'>
+            <div class="absolute right-0 hidden" data-target='me.container'>
               <div class="flex h-full">
                 <div class="fixed inset-0 transition-opacity">
                   <div class="absolute inset-0 opacity-75" data-action='click->me#open'></div>
                 </div>
-                <div class="z-20 grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 rounded-lg shadow-lg">
+                <div class="z-20 px-5 py-6 bg-white rounded-lg shadow-lg grid gap-6 sm:gap-8 sm:p-8">
                   <%= link_to  Current.user, class: "-m-3 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150" do %>
-                    <p class="text-base leading-6 font-medium text-gray-900">
+                    <p class="text-base font-medium text-gray-900 leading-6">
                       <%= "@#{Current.user.name}" %>
                     </p>
                   <% end %>
                   <%= link_to logout_path, method: :delete, class: '"-m-3 p-3 block space-y-1 rounded-md hover:bg-gray-50 transition ease-in-out duration-150"' do %>
-                    <p class="text-base leading-6 font-medium text-gray-900">
+                    <p class="text-base font-medium text-gray-900 leading-6">
                       <%= link_to 'logout', logout_path, method: :delete %>
                     </p>
                   <% end %>
@@ -79,25 +74,25 @@
       </div>
     </div>
     <%- if content_for?(:breadcrumb) %>
-      <div class='max-w-xl mx-auto px-4'>
+      <div class='max-w-xl px-4 mx-auto'>
         <%= yield(:breadcrumb) %>
       </div>
     <% end %>
     <% if notice %>
-      <div class='max-w-xl mx-auto py-4'>
-        <div class="rounded-md bg-green-100 p-4">
+      <div class='max-w-xl py-4 mx-auto'>
+        <div class="p-4 bg-green-100 rounded-md">
           <div class="flex">
             <div class="flex-shrink-0">
               <!-- Heroicon name: check-circle -->
-              <svg class="h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <svg class="w-5 h-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
               </svg>
             </div>
             <div class="ml-3">
-              <h3 class="text-sm leading-5 font-medium text-green-800">
+              <h3 class="text-sm font-medium text-green-800 leading-5">
                 Order completed
               </h3>
-              <div class="mt-2 text-sm leading-5 text-green-700">
+              <div class="mt-2 text-sm text-green-700 leading-5">
                 <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid pariatur, ipsum similique veniam.
                 </p>
